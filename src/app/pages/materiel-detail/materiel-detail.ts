@@ -1,8 +1,9 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { Data } from '../../services/data';
+import { Auth } from '../../services/auth';
 
 @Component({
   imports: [RouterLink],
@@ -13,6 +14,8 @@ import { Data } from '../../services/data';
 export class MaterielDetail {
   private route = inject(ActivatedRoute);
   protected data = inject(Data); 
+  protected auth = inject(Auth);
+  readonly message = signal<string | null>(null);
 
   private readonly id = toSignal(
     this.route.paramMap.pipe(map(p => Number(p.get('id')))),
@@ -22,4 +25,14 @@ export class MaterielDetail {
   readonly equipement = computed(() =>  
     this.data.equipements().find(e => e.id === this.id()) 
   );
+
+  reserver(equipementId: number) {
+    const compte = this.auth.compte();
+    if (!compte || !this.auth.estEtudiant()) {
+      this.message.set('Seuls les étudiants peuvent réserver du matériel.');
+      return;
+    }
+    const erreur = this.data.reserver(equipementId, compte.id);
+    this.message.set(erreur ?? 'Réservation effectuée.');
+  }
 }

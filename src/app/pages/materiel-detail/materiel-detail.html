@@ -10,6 +10,15 @@
     <dt>Statut</dt>
     <dd>{{ data.estDisponible(equipement.id) ? 'Disponible' : 'Réservé' }}</dd>
   </dl>
+
+  @if (auth.estEtudiant()) {
+    <button type="button" (click)="reserver(equipement.id)" [disabled]="!data.estDisponible(equipement.id)">
+      Réserver
+    </button>
+  }
+  @if (message(); as message) {
+    <p role="status">{{ message }}</p>
+  }
 } @else {
   <h2>Matériel introuvable</h2>
   <p>Le matériel demandé n'existe pas.</p>

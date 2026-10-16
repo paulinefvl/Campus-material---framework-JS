@@ -41,4 +41,21 @@ export class Data {
       this.erreurStockage.set('Enregistrement impossible.');
     }
   }
+
+  reserver(equipementId: number, etudiantId: number): string | null {
+    if (!this.equipements().some(e => e.id === equipementId)) return 'Équipement inexistant.';
+    if (!this.estDisponible(equipementId)) return 'Équipement déjà réservé.';
+    this.reservationsState.update(liste => [...liste, { id: crypto.randomUUID(), equipementId, etudiantId }]);
+    return null;
+  }
+
+  annuler(reservationId: string, etudiantId: number) {
+    this.reservationsState.update(liste =>
+      liste.filter(r => r.id !== reservationId || r.etudiantId !== etudiantId)
+    );
+  }
+
+  reservationsDe(etudiantId: number) {
+    return this.reservations().filter(r => r.etudiantId === etudiantId);
+  }
 }
