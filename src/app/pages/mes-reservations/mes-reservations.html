@@ -1,1 +1,16 @@
-<p>mes-reservations works!</p>
+<h2>Mes réservations</h2>
+
+<ul>
+  @for (ligne of mesReservations(); track ligne.reservation.id) {
+    <li>
+      @if (ligne.equipement; as equipement) {
+        <a [routerLink]="['/materiels', equipement.id]">{{ equipement.nom }}</a>
+      } @else {
+        Équipement introuvable
+      }
+      <button type="button" (click)="annuler(ligne.reservation.id)">Annuler</button>
+    </li>
+  } @empty {
+    <li>Vous n'avez aucune réservation en cours.</li>
+  }
+</ul>
