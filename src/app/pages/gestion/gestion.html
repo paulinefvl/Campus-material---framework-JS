@@ -1,1 +1,33 @@
-<p>gestion works!</p>
+<h2>Gestion du catalogue</h2>
+
+<a routerLink="/gestion/nouveau">Ajouter un équipement</a>
+
+@if (message(); as message) {
+  <p role="status">{{ message }}</p>
+}
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Catégorie</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (equipement of data.equipements(); track equipement.id) {
+      <tr>
+        <td>{{ equipement.nom }}</td>
+        <td>{{ equipement.categorie }}</td>
+        <td>{{ data.estDisponible(equipement.id) ? 'Disponible' : 'Réservé' }}</td>
+        <td>
+          <a [routerLink]="['/gestion', equipement.id, 'modifier']">Modifier</a>
+          <button type="button" (click)="supprimer(equipement.id, equipement.nom)">Supprimer</button>
+        </td>
+      </tr>
+    } @empty {
+      <tr><td colspan="4">Le catalogue est vide.</td></tr>
+    }
+  </tbody>
+</table>

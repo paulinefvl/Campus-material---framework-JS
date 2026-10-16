@@ -1,9 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Data } from '../../services/data';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-gestion',
   styleUrl: './gestion.css',
   templateUrl: './gestion.html',
 })
-export class Gestion {}
+export class Gestion {
+  protected data = inject(Data);
+  readonly message = signal<string | null>(null);
+
+  supprimer(id: number, nom: string) {
+    if (!confirm(`Supprimer « ${nom} » ?`)) return;
+    const erreur = this.data.supprimerEquipement(id);
+    this.message.set(erreur ?? `« ${nom} » a été supprimé.`);
+  }
+}

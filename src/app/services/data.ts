@@ -58,4 +58,23 @@ export class Data {
   reservationsDe(etudiantId: number) {
     return this.reservations().filter(r => r.etudiantId === etudiantId);
   }
+
+  ajouterEquipement(donnees: Omit<Equipement, 'id'>) {
+    const nouvelId = Math.max(100, ...this.equipements().map(e => e.id)) + 1;
+    this.equipementsState.update(liste => [...liste, { id: nouvelId, ...donnees }]);
+  }
+
+  modifierEquipement(id: number, donnees: Omit<Equipement, 'id'>) {
+    this.equipementsState.update(liste =>
+      liste.map(e => e.id === id ? { ...e, ...donnees } : e)
+    );
+  }
+
+  supprimerEquipement(id: number): string | null {
+    if (!this.estDisponible(id)) {
+      return 'Suppression impossible : cet équipement est actuellement réservé.';
+    }
+    this.equipementsState.update(liste => liste.filter(e => e.id !== id));
+    return null;
+  }
 }
