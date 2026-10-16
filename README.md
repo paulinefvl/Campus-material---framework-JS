@@ -7,7 +7,7 @@ Projet final du module Framework JS — Sup de Vinci Rennes.
 
 ## Installation et lancement
 
-Prérequis : Node.js [version, résultat de `node -v`] et npm.
+Prérequis : Node.js v24.15.0 et npm.
 
 ```bash
 npm install
@@ -143,5 +143,6 @@ src/app/
 
 ## Outils utilisés
 
-[À adapter selon ce qui est autorisé, ex. : « Mise en forme CSS et commentaires
-réalisés avec l'aide de GitHub Copilot, puis relus et vérifiés. »]
+Claude IA : demande d'exemple pour refaire selon le projet
+GitHub Copilot : tout le CSS, certains commentaires
+Cours de FRAMEWORK JS
