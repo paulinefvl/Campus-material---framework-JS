@@ -1,1 +1,18 @@
-<p>materiel-detail works!</p>
+@if (equipement(); as equipement) {
+  <h2>{{ equipement.nom }}</h2>
+  <dl>
+    <dt>Catégorie</dt>
+    <dd>{{ equipement.categorie }}</dd>
+    <dt>Description</dt>
+    <dd>{{ equipement.description }}</dd>
+    <dt>Localisation</dt>
+    <dd>{{ equipement.localisation }}</dd>
+    <dt>Statut</dt>
+    <dd>{{ data.estDisponible(equipement.id) ? 'Disponible' : 'Réservé' }}</dd>
+  </dl>
+} @else {
+  <h2>Matériel introuvable</h2>
+  <p>Le matériel demandé n'existe pas.</p>
+}
+
+<a routerLink="/catalogue">Retour au catalogue</a>
