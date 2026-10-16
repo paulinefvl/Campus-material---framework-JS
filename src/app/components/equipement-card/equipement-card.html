@@ -1,1 +1,5 @@
-<p>equipement-card works!</p>
+<article>
+  <h3><a [routerLink]="['/materiels', equipement().id]">{{ equipement().nom }}</a></h3> 
+  <p>{{ equipement().categorie }} · {{ equipement().localisation }}</p> 
+  <p>{{ disponible() ? 'Disponible' : 'Réservé' }}</p>                        
+</article>
