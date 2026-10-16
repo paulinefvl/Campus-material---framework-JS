@@ -1,0 +1,2 @@
+nav { display: flex; gap: 1rem; }
+nav a.active { font-weight: bold; text-decoration: underline; }
