@@ -1,3 +1,5 @@
+// Ce service gère la session et les rôles de la démonstration.
+// On garde seulement l'id du compte, puis on retrouve ses infos au démarrage.
 import { Injectable, computed, effect, signal } from '@angular/core';
 import { COMPTES_INITIAUX, Compte } from '../data/donnees-initiales';
 
@@ -23,7 +25,7 @@ export class Auth {
         effect(() => {
             const compte = this.compteState();
             try {
-                // La session ne contient que l'id : le profil reste piloté par les données connues.
+                // On stocke seulement l'id pour ne pas copier tout le profil.
                 if (compte) localStorage.setItem(CLE_SESSION, JSON.stringify(compte.id));
                 else localStorage.removeItem(CLE_SESSION);
             } catch {
@@ -32,24 +34,17 @@ export class Auth {
         });
     }
 
-      /**
-       * Connecte le compte correspondant à l'identifiant fourni.
-       * @param id Identifiant du compte de démonstration à rechercher.
-       * La méthode ne renvoie rien ; un identifiant inconnu laisse la session vide.
-       */
+    // On cherche le compte choisi et on le met dans la session.
     connecter(id: number) {
         this.compteState.set(this.comptes.find(c => c.id === id) ?? null);
     }
 
-    /**
-     * Ferme la session courante et supprime l'identifiant persistant.
-     * Ne prend aucun paramètre et ne renvoie rien.
-     */
+    // Mettre la session à null déclenche aussi la suppression dans localStorage.
     deconnecter() {
         this.compteState.set(null);
     }
 
-    // Une session absente est différente d'une session contenant une valeur vide.
+    // Si la clé n'existe pas, personne n'est connecté.
     private chargerSession(): Compte | null {
         try {
             const brut = localStorage.getItem(CLE_SESSION);

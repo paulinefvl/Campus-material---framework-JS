@@ -2,9 +2,11 @@
   <h2>{{ modeEdition ? 'Modifier un équipement' : 'Nouvel équipement' }}</h2>
 
   @if (introuvable()) {
+    <!-- L'équipement demandé n'existe plus ou n'a jamais existé. -->
     <p>Équipement introuvable.</p>
     <a class="btn btn-secondary" routerLink="/gestion">Retour à la gestion</a>
   } @else {
+    <!-- Le formulaire sert à la création et à la modification. -->
     <form [formGroup]="form" (ngSubmit)="enregistrer()" novalidate>
       <div>
         <label for="nom">Nom</label>

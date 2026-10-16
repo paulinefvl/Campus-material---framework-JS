@@ -1,3 +1,5 @@
+// Carte d'un équipement dans le catalogue.
+// Les input() servent à recevoir les données envoyées par le parent.
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Equipement } from '../../data/donnees-initiales';

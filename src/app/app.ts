@@ -1,3 +1,5 @@
+// Composant principal : il affiche la navigation et la page en cours.
+// La déconnexion est regroupée ici.
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Auth } from './services/auth';
@@ -18,7 +20,7 @@ export class App {
   protected data = inject(Data);
   private router = inject(Router);
 
-  /** Déconnecte le compte courant puis redirige vers l'écran de connexion. */
+  // On ferme la session puis on revient à la connexion.
   deconnecter() {
     this.auth.deconnecter();
     this.router.navigate(['/login']);

@@ -1,9 +1,12 @@
+// Même formulaire pour ajouter ou modifier un équipement.
+// L'id dans l'URL indique le mode et permet de préremplir les champs.
 import { Component, inject, signal } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Data } from '../../services/data';
 import { CATEGORIES, Categorie } from '../../data/donnees-initiales';
 
+// On ignore les espaces seuls, car minLength les compterait quand même.
 function minSansEspaces(min: number): ValidatorFn {
   return (control: AbstractControl) =>
     control.value.trim().length >= min ? null : { minSansEspaces: true };
@@ -24,6 +27,7 @@ export class EquipementForm {
 
   private readonly idParam = this.route.snapshot.paramMap.get('id');
   readonly modeEdition = this.idParam !== null;
+  // Number transforme l'id de l'URL en nombre.
   private readonly id = Number(this.idParam);
   readonly introuvable = signal(false);
 
@@ -50,6 +54,7 @@ export class EquipementForm {
     }
   }
 
+  // On valide puis on ajoute ou modifie selon le mode.
   enregistrer() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();

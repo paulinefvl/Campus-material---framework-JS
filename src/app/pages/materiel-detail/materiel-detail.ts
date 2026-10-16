@@ -1,3 +1,5 @@
+// Page de détail d'un équipement et de réservation.
+// On lit l'id dans l'URL puis on cherche l'équipement dans Data.
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -18,14 +20,17 @@ export class MaterielDetail {
   readonly message = signal<string | null>(null);
 
   private readonly id = toSignal(
+    // Number transforme le paramètre texte en nombre.
     this.route.paramMap.pipe(map(p => Number(p.get('id')))),
     { initialValue: NaN }  
   );
 
+  // computed retrouve automatiquement le bon équipement.
   readonly equipement = computed(() =>  
     this.data.equipements().find(e => e.id === this.id()) 
   );
 
+  // On réserve et on affiche le message renvoyé par le service.
   reserver(equipementId: number) {
     const compte = this.auth.compte();
     if (!compte || !this.auth.estEtudiant()) {

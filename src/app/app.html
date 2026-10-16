@@ -1,4 +1,5 @@
 <header>
+  <!-- En-tête avec le menu et le compte connecté. -->
   <div class="app-shell header-inner">
     <div class="brand">
       <span class="brand-mark" aria-hidden="true">CM</span>
@@ -30,9 +31,11 @@
 </header>
 
 @if (data.erreurStockage(); as erreur) {
+  <!-- On affiche l'erreur de stockage sans bloquer la page. -->
   <p role="alert">{{ erreur }}</p>
 }
 
 <main>
+  <!-- La page liée à l'URL s'affiche ici. -->
   <router-outlet />
 </main>

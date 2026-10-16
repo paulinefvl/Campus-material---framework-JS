@@ -1,3 +1,5 @@
+// Configuration de départ de l'application standalone.
+// On y branche le routeur et les erreurs globales du navigateur.
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';

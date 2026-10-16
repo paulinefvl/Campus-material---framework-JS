@@ -7,6 +7,7 @@
   <a class="btn btn-primary" routerLink="/gestion/nouveau">Ajouter un équipement</a>
 </div>
 
+<!-- Message renvoyé par le service Data. -->
 @if (message(); as message) {
   <p role="status">{{ message }}</p>
 }
@@ -33,6 +34,7 @@
           </td>
         </tr>
       } @empty {
+        <!-- Le tableau est vide pour le moment. -->
         <tr><td class="empty-state" colspan="4">Le catalogue est vide.</td></tr>
       }
     </tbody>

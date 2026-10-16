@@ -1,3 +1,4 @@
+<!-- Recherche et filtre du catalogue. -->
 <div class="page-heading">
   <h2>Catalogue</h2>
   <p>Consultez et réservez le matériel disponible sur le campus.</p>
@@ -21,6 +22,7 @@
 </div>
 
 @if (data.equipements().length === 0) {
+  <!-- Le catalogue ne contient encore aucun équipement. -->
   <p class="empty-state">Le catalogue est vide.</p>
 } @else {
   <ul>
@@ -29,6 +31,7 @@
         <app-equipement-card [equipement]="equipement" [disponible]="data.estDisponible(equipement.id)" />
       </li>
     } @empty {
+      <!-- Le catalogue existe, mais la recherche ne trouve rien. -->
       <li class="empty-state">Aucun équipement ne correspond à votre recherche.</li>
     }
   </ul>

@@ -1,3 +1,5 @@
+// Page du catalogue avec la recherche et le filtre par catégorie.
+// La liste se recalcule quand la recherche ou les données changent.
 import { Component, computed, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -18,9 +20,11 @@ export class Catalogue {
   readonly recherche = new FormControl('', { nonNullable: true });
   readonly categorie = new FormControl('', { nonNullable: true });
 
+  // toSignal transforme les changements des formulaires en signaux.
   private readonly rechercheValeur = toSignal(this.recherche.valueChanges, { initialValue: '' });
   private readonly categorieValeur = toSignal(this.categorie.valueChanges, { initialValue: '' });
 
+  // computed recalcule la liste sans devoir la mettre à jour à la main.
   readonly equipementsVisibles = computed(() => {
     const texte = this.rechercheValeur().trim().toLowerCase();
     const categorie = this.categorieValeur();

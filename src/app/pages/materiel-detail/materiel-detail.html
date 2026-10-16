@@ -1,4 +1,5 @@
 @if (equipement(); as equipement) {
+  <!-- Affichage normal : infos du matériel et réservation. -->
   <div class="detail-layout">
     <section class="detail-info">
       <h2>{{ equipement.nom }}</h2>
@@ -28,6 +29,7 @@
     </aside>
   </div>
 } @else {
+  <!-- L'id de l'URL ne correspond à aucun équipement. -->
   <div class="empty-state">
     <h2>Matériel introuvable</h2>
     <p>Le matériel demandé n'existe pas.</p>

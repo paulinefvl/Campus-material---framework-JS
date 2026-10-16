@@ -1,3 +1,5 @@
+// Page affichée quand l'URL ne correspond à aucune route.
+// Le lien du template permet de revenir à l'accueil.
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
