@@ -1,0 +1,97 @@
+:host {
+  display: grid;
+  min-height: calc(100vh - 72px);
+  place-items: center;
+}
+
+.login-card {
+  width: min(100%, 440px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-7);
+  background: var(--surface);
+}
+
+.login-heading {
+  text-align: center;
+}
+
+.login-heading .brand-mark {
+  margin-inline: auto;
+}
+
+.login-heading h2 {
+  margin: var(--space-5) 0 var(--space-2);
+}
+
+.login-heading p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+ul {
+  display: grid;
+  gap: var(--space-3);
+  margin: var(--space-6) 0 0;
+}
+
+.login-card .account-option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--space-3);
+  border-color: var(--border);
+  color: var(--text);
+  background: var(--surface);
+  text-align: left;
+}
+
+.login-card .account-option:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+.login-avatar {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.account-option-copy {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.account-option-copy strong {
+  font-size: 0.9rem;
+}
+
+.account-option-copy small {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+  color: var(--text-muted);
+  background: var(--surface-muted);
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.login-card .account-option:hover .account-option-copy small {
+  color: var(--accent-dark);
+  background: var(--white);
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: var(--space-5);
+  }
+}

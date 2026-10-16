@@ -1,21 +1,32 @@
 <header>
-  <h1>Campus Matériel</h1>
+  <div class="app-shell header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">CM</span>
+      <span>Campus Matériel</span>
+    </div>
 
-  @if (auth.compte(); as compte) {
-    <nav aria-label="Menu principal">
-      <a routerLink="/catalogue" routerLinkActive="active" ariaCurrentWhenActive="page">Catalogue</a>
-      @if (auth.estEtudiant()) {
-        <a routerLink="/mes-reservations" routerLinkActive="active" ariaCurrentWhenActive="page">Mes réservations</a>
-      }
-      @if (auth.estResponsable()) {
-        <a routerLink="/gestion" routerLinkActive="active" ariaCurrentWhenActive="page">Gestion</a>
-      }
-    </nav>
-    <p>
-      Connecté : {{ compte.nom }}
-      <button type="button" (click)="deconnecter()">Se déconnecter</button>
-    </p>
-  }
+    @if (auth.compte(); as compte) {
+      <nav aria-label="Menu principal">
+        <a routerLink="/catalogue" routerLinkActive="active" ariaCurrentWhenActive="page">Catalogue</a>
+        @if (auth.estEtudiant()) {
+          <a routerLink="/mes-reservations" routerLinkActive="active" ariaCurrentWhenActive="page">Mes réservations</a>
+        }
+        @if (auth.estResponsable()) {
+          <a routerLink="/gestion" routerLinkActive="active" ariaCurrentWhenActive="page">Gestion</a>
+        }
+      </nav>
+      <div class="account-area">
+        <div class="user-chip">
+          <span class="user-avatar" aria-hidden="true">U</span>
+          <span class="user-copy">
+            <strong>{{ compte.nom }}</strong>
+            <small>{{ compte.role }}</small>
+          </span>
+        </div>
+        <button class="btn btn-secondary" type="button" (click)="deconnecter()">Se déconnecter</button>
+      </div>
+    }
+  </div>
 </header>
 
 @if (data.erreurStockage(); as erreur) {

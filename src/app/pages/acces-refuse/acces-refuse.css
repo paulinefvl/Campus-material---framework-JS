@@ -1,0 +1,25 @@
+.feedback-page {
+  display: grid;
+  min-height: 50vh;
+  place-items: center;
+  align-content: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.feedback-code {
+  color: var(--border-strong);
+  font-size: clamp(4rem, 12vw, 7rem);
+  font-weight: 600;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.feedback-page h2,
+.feedback-page p {
+  margin: 0;
+}
+
+.feedback-page p {
+  color: var(--text-muted);
+}

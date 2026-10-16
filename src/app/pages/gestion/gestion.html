@@ -1,33 +1,40 @@
-<h2>Gestion du catalogue</h2>
+<div class="page-heading page-heading-actions">
+  <div>
+    <h2>Gestion du catalogue</h2>
+    <p>Administrez les équipements disponibles sur le campus.</p>
+  </div>
 
-<a routerLink="/gestion/nouveau">Ajouter un équipement</a>
+  <a class="btn btn-primary" routerLink="/gestion/nouveau">Ajouter un équipement</a>
+</div>
 
 @if (message(); as message) {
   <p role="status">{{ message }}</p>
 }
 
-<table>
-  <thead>
-    <tr>
-      <th scope="col">Nom</th>
-      <th scope="col">Catégorie</th>
-      <th scope="col">Statut</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (equipement of data.equipements(); track equipement.id) {
+<div class="table-card">
+  <table>
+    <thead>
       <tr>
-        <td>{{ equipement.nom }}</td>
-        <td>{{ equipement.categorie }}</td>
-        <td>{{ data.estDisponible(equipement.id) ? 'Disponible' : 'Réservé' }}</td>
-        <td>
-          <a [routerLink]="['/gestion', equipement.id, 'modifier']">Modifier</a>
-          <button type="button" (click)="supprimer(equipement.id, equipement.nom)">Supprimer</button>
-        </td>
+        <th scope="col">Nom</th>
+        <th scope="col">Catégorie</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Actions</th>
       </tr>
-    } @empty {
-      <tr><td colspan="4">Le catalogue est vide.</td></tr>
-    }
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      @for (equipement of data.equipements(); track equipement.id) {
+        <tr>
+          <td>{{ equipement.nom }}</td>
+          <td>{{ equipement.categorie }}</td>
+          <td><span class="status-pill" [class.reserve]="!data.estDisponible(equipement.id)">{{ data.estDisponible(equipement.id) ? 'Disponible' : 'Réservé' }}</span></td>
+          <td>
+            <a class="btn btn-secondary" [routerLink]="['/gestion', equipement.id, 'modifier']">Modifier</a>
+            <button class="btn btn-danger" type="button" (click)="supprimer(equipement.id, equipement.nom)">Supprimer</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr><td class="empty-state" colspan="4">Le catalogue est vide.</td></tr>
+      }
+    </tbody>
+  </table>
+</div>

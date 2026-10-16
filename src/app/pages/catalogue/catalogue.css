@@ -1,0 +1,55 @@
+.page-heading p {
+  margin: calc(var(--space-5) * -1) 0 var(--space-5);
+  color: var(--text-muted);
+}
+
+.catalogue-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(180px, 0.75fr);
+  gap: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  background: var(--surface);
+}
+
+.field {
+  min-width: 0;
+}
+
+input[type="search"] {
+  padding-left: 2.25rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E");
+  background-position: 0.7rem center;
+  background-repeat: no-repeat;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-5) 0 0;
+}
+
+li {
+  min-width: 0;
+}
+
+li > app-equipement-card {
+  display: block;
+}
+
+.empty-state {
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  padding: var(--space-7) var(--space-4);
+  color: var(--text-muted);
+  background: var(--surface);
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .catalogue-toolbar {
+    grid-template-columns: 1fr;
+  }
+}

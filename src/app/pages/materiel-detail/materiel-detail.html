@@ -1,27 +1,37 @@
 @if (equipement(); as equipement) {
-  <h2>{{ equipement.nom }}</h2>
-  <dl>
-    <dt>Catégorie</dt>
-    <dd>{{ equipement.categorie }}</dd>
-    <dt>Description</dt>
-    <dd>{{ equipement.description }}</dd>
-    <dt>Localisation</dt>
-    <dd>{{ equipement.localisation }}</dd>
-    <dt>Statut</dt>
-    <dd>{{ data.estDisponible(equipement.id) ? 'Disponible' : 'Réservé' }}</dd>
-  </dl>
+  <div class="detail-layout">
+    <section class="detail-info">
+      <h2>{{ equipement.nom }}</h2>
+      <dl>
+        <dt>Catégorie</dt>
+        <dd>{{ equipement.categorie }}</dd>
+        <dt>Description</dt>
+        <dd>{{ equipement.description }}</dd>
+        <dt>Localisation</dt>
+        <dd>{{ equipement.localisation }}</dd>
+        <dt>Statut</dt>
+        <dd class="status-pill" [class.reserve]="!data.estDisponible(equipement.id)">{{ data.estDisponible(equipement.id) ? 'Disponible' : 'Réservé' }}</dd>
+      </dl>
+    </section>
 
-  @if (auth.estEtudiant()) {
-    <button type="button" (click)="reserver(equipement.id)" [disabled]="!data.estDisponible(equipement.id)">
-      Réserver
-    </button>
-  }
-  @if (message(); as message) {
-    <p role="status">{{ message }}</p>
-  }
+    <aside class="action-panel">
+      @if (auth.estEtudiant()) {
+        <p class="panel-label">Disponibilité</p>
+        <p class="status-pill" [class.reserve]="!data.estDisponible(equipement.id)">{{ data.estDisponible(equipement.id) ? 'Disponible' : 'Réservé' }}</p>
+        <button class="btn btn-primary" type="button" (click)="reserver(equipement.id)" [disabled]="!data.estDisponible(equipement.id)">
+          Réserver
+        </button>
+      }
+      @if (message(); as message) {
+        <p role="status">{{ message }}</p>
+      }
+    </aside>
+  </div>
 } @else {
-  <h2>Matériel introuvable</h2>
-  <p>Le matériel demandé n'existe pas.</p>
+  <div class="empty-state">
+    <h2>Matériel introuvable</h2>
+    <p>Le matériel demandé n'existe pas.</p>
+  </div>
 }
 
-<a routerLink="/catalogue">Retour au catalogue</a>
+<a class="btn btn-secondary back-link" routerLink="/catalogue">Retour au catalogue</a>

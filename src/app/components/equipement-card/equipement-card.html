@@ -1,5 +1,8 @@
 <article>
-  <h3><a [routerLink]="['/materiels', equipement().id]">{{ equipement().nom }}</a></h3> 
-  <p>{{ equipement().categorie }} · {{ equipement().localisation }}</p> 
-  <p>{{ disponible() ? 'Disponible' : 'Réservé' }}</p>                        
+  <div class="card-topline">
+    <span class="category-chip">{{ equipement().categorie }}</span>
+  </div>
+  <h3><a [routerLink]="['/materiels', equipement().id]">{{ equipement().nom }}</a></h3>
+  <p class="location">{{ equipement().localisation }}</p>
+  <p class="status-pill" [class.reserve]="!disponible()">{{ disponible() ? 'Disponible' : 'Réservé' }}</p>
 </article>

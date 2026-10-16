@@ -1,0 +1,42 @@
+.page-heading p {
+  margin: calc(var(--space-5) * -1) 0 var(--space-5);
+  color: var(--text-muted);
+}
+
+ul {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 760px;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  min-height: 64px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+}
+
+li > a {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+li > a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.empty-state {
+  border-style: dashed;
+  justify-content: center;
+  padding: var(--space-7) var(--space-4);
+  color: var(--text-muted);
+}

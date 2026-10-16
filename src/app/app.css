@@ -1,2 +1,151 @@
-nav { display: flex; gap: 1rem; }
-nav a.active { font-weight: bold; text-decoration: underline; }
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+header {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.app-shell,
+main {
+  width: min(1100px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.header-inner {
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.brand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 10px;
+  color: var(--white);
+  background: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+nav {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+nav a {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: var(--text);
+  background: var(--surface-muted);
+}
+
+nav a.active {
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+}
+
+.account-area {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.user-avatar {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.user-copy {
+  display: grid;
+  line-height: 1.2;
+}
+
+.user-copy strong {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.user-copy small {
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  text-transform: capitalize;
+}
+
+main {
+  padding: var(--space-7) 0;
+}
+
+@media (max-width: 780px) {
+  .header-inner {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+  }
+
+  nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .account-area {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-copy {
+    display: none;
+  }
+
+  .account-area .btn {
+    padding-inline: 0.65rem;
+  }
+}

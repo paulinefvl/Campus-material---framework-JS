@@ -1,3 +1,51 @@
-.erreur { color: #b00020; margin: 0.25rem 0 0; }
-form div { margin-bottom: 1rem; }
-label { display: block; }
+:host {
+  display: block;
+}
+
+.form-card {
+  width: min(100%, 640px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-6);
+  background: var(--surface);
+}
+
+.form-card h2 {
+  margin-bottom: var(--space-6);
+}
+
+form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+form > div {
+  display: grid;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: var(--danger);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 480px) {
+  .form-card {
+    padding: var(--space-4);
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}

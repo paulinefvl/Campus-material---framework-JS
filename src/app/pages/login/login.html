@@ -1,12 +1,21 @@
-<h2>Connexion</h2>
-<p>Choisissez un compte pour la démonstration :</p>
+<div class="login-card">
+  <div class="login-heading">
+    <span class="brand-mark" aria-hidden="true">CM</span>
+    <h2>Connexion</h2>
+    <p>Choisissez un compte pour la démonstration :</p>
+  </div>
 
-<ul>
-  @for (compte of auth.comptes; track compte.id) {
-    <li>
-      <button type="button" (click)="choisir(compte.id)">
-        {{ compte.nom }} ({{ compte.role }})
-      </button>
-    </li>
-  }
-</ul>
+  <ul>
+    @for (compte of auth.comptes; track compte.id) {
+      <li>
+        <button class="account-option" type="button" (click)="choisir(compte.id)">
+          <span class="login-avatar" aria-hidden="true">U</span>
+          <span class="account-option-copy">
+            <strong>{{ compte.nom }}</strong>
+            <small>{{ compte.role }}</small>
+          </span>
+        </button>
+      </li>
+    }
+  </ul>
+</div>

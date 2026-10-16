@@ -1,4 +1,7 @@
-<h2>Mes réservations</h2>
+<div class="page-heading">
+  <h2>Mes réservations</h2>
+  <p>Retrouvez les équipements que vous avez réservés.</p>
+</div>
 
 <ul>
   @for (ligne of mesReservations(); track ligne.reservation.id) {
@@ -8,9 +11,9 @@
       } @else {
         Équipement introuvable
       }
-      <button type="button" (click)="annuler(ligne.reservation.id)">Annuler</button>
+      <button class="btn btn-secondary" type="button" (click)="annuler(ligne.reservation.id)">Annuler</button>
     </li>
   } @empty {
-    <li>Vous n'avez aucune réservation en cours.</li>
+    <li class="empty-state">Vous n'avez aucune réservation en cours.</li>
   }
 </ul>

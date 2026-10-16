@@ -1,18 +1,27 @@
-<h2>Catalogue</h2>
+<div class="page-heading">
+  <h2>Catalogue</h2>
+  <p>Consultez et réservez le matériel disponible sur le campus.</p>
+</div>
 
-<label for="recherche">Rechercher par nom</label>
-<input id="recherche" type="search" [formControl]="recherche">
+<div class="catalogue-toolbar">
+  <div class="field">
+    <label for="recherche">Rechercher par nom</label>
+    <input id="recherche" type="search" [formControl]="recherche">
+  </div>
 
-<label for="categorie">Catégorie</label>
-<select id="categorie" [formControl]="categorie">
-  <option value="">Toutes les catégories</option>
-  @for (c of categories; track c) {
-    <option [value]="c">{{ c }}</option>
-  }
-</select>
+  <div class="field">
+    <label for="categorie">Catégorie</label>
+    <select id="categorie" [formControl]="categorie">
+      <option value="">Toutes les catégories</option>
+      @for (c of categories; track c) {
+        <option [value]="c">{{ c }}</option>
+      }
+    </select>
+  </div>
+</div>
 
 @if (data.equipements().length === 0) {
-  <p>Le catalogue est vide.</p>
+  <p class="empty-state">Le catalogue est vide.</p>
 } @else {
   <ul>
     @for (equipement of equipementsVisibles(); track equipement.id) {
@@ -20,7 +29,7 @@
         <app-equipement-card [equipement]="equipement" [disponible]="data.estDisponible(equipement.id)" />
       </li>
     } @empty {
-      <li>Aucun équipement ne correspond à votre recherche.</li>
+      <li class="empty-state">Aucun équipement ne correspond à votre recherche.</li>
     }
   </ul>
 }
