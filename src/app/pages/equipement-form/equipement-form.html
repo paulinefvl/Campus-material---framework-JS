@@ -1,1 +1,48 @@
-<p>equipement-form works!</p>
+<h2>{{ modeEdition ? 'Modifier un équipement' : 'Nouvel équipement' }}</h2>
+
+@if (introuvable()) {
+  <p>Équipement introuvable.</p>
+  <a routerLink="/gestion">Retour à la gestion</a>
+} @else {
+  <form [formGroup]="form" (ngSubmit)="enregistrer()" novalidate>
+    <div>
+      <label for="nom">Nom</label>
+      <input id="nom" formControlName="nom">
+      @if (form.controls.nom.touched && form.controls.nom.invalid) {
+        <p class="erreur">Le nom est obligatoire (3 caractères minimum).</p>
+      }
+    </div>
+
+    <div>
+      <label for="categorie">Catégorie</label>
+      <select id="categorie" formControlName="categorie">
+        <option value="">Choisir une catégorie</option>
+        @for (c of categories; track c) {
+          <option [value]="c">{{ c }}</option>
+        }
+      </select>
+      @if (form.controls.categorie.touched && form.controls.categorie.invalid) {
+        <p class="erreur">La catégorie est obligatoire.</p>
+      }
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description"></textarea>
+      @if (form.controls.description.touched && form.controls.description.invalid) {
+        <p class="erreur">La description est obligatoire (10 caractères minimum).</p>
+      }
+    </div>
+
+    <div>
+      <label for="localisation">Localisation</label>
+      <input id="localisation" formControlName="localisation">
+      @if (form.controls.localisation.touched && form.controls.localisation.invalid) {
+        <p class="erreur">La localisation est obligatoire.</p>
+      }
+    </div>
+
+    <button type="submit">Enregistrer</button>
+    <a routerLink="/gestion">Annuler</a>
+  </form>
+}
