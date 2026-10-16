@@ -1,1 +1,12 @@
-<p>login works!</p>
+<h2>Connexion</h2>
+<p>Choisissez un compte pour la démonstration :</p>
+
+<ul>
+  @for (compte of auth.comptes; track compte.id) {
+    <li>
+      <button type="button" (click)="choisir(compte.id)">
+        {{ compte.nom }} ({{ compte.role }})
+      </button>
+    </li>
+  }
+</ul>
